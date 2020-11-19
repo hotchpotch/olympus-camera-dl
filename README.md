@@ -1,39 +1,48 @@
-# Olympus::Camera::Dl
+# olympus-camera-dl
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/olympus/camera/dl`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+cli tool that download images from olympus camera using wifi.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+using rubygems
 
-```ruby
-gem 'olympus-camera-dl'
 ```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install olympus-camera-dl
+gem install olympus-camera-dl
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ olympus-camera-dl -h
+Usage: olympus-camela-dl [options] ./photo-download-dir/
+        --delete                     delete images on camera after download
+    -c, --card-slot [NUM]            set SD card slot 1 or 2
+    -e, --ext [EXTNAME]              set download ext name, example: -e "jpg" or -e "oft"
+    -s, --skip                       skip download image when image exists
+    -p, --power-off                  camera power off when finished
+```
 
-## Development
+```
+$ olympus-camera-dl
+ERROR: Can't connect to camera
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+## connect to camera's wifi
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/olympus-camera-dl.
-
+$ olympus-camera-dl -c 2 --delete --power-off /home/pi/photos/E-M1MarkII/
+Connected: E-M1MarkII
+Target camera 11 images found
+[1/11] DOWNLOAD: /DCIM/101OLYMP/PB202134.JPG
+[1/11] WRITE: /home/pi/photos/E-M1MarkII/PB202134.JPG (4,517,267 byte)
+[1/11] DELETED: /DCIM/101OLYMP/PB202134.JPG on camera
+[2/11] DOWNLOAD: /DCIM/101OLYMP/PB202135.JPG
+[2/11] WRITE: /home/pi/photos/E-M1MarkII/PB202135.JPG (4,380,822 byte)
+[2/11] DELETED: /DCIM/101OLYMP/PB202135.JPG on camera
+...
+[11/11] DOWNLOAD: /DCIM/101OLYMP/PB202144.JPG
+[11/11] WRITE: /home/pi/photos/E-M1MarkII/PB202144.JPG (4,466,991 byte)
+[11/11] DELETED: /DCIM/101OLYMP/PB202144.JPG on camera
+Power off
+```
 
 ## License
 
