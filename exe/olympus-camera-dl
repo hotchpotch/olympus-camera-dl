@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
 
 require "olympus-camera"
+require "olympus-camera-dl"
 require "optparse"
 require "pathname"
+require "http-dump"
 
 Signal.trap(:INT) { exit 1 }
 
 options = {}
+
+Version = OlympusCameraDl::VERSION
 
 opt = OptionParser.new
 
@@ -28,6 +32,10 @@ opt.on("-s", "--skip", "skip download image when image exists") {
 
 opt.on("-p", "--power-off", "camera power off when finished") {
   options[:power_off] = true
+}
+
+opt.on("-V", "--verbose", "verbose debug messages") {
+  HTTPDump.enable!
 }
 
 opt.banner = "Usage: olympus-camela-dl [options] ./photo-download-dir/"
@@ -54,6 +62,7 @@ puts "Connected: #{model[0]}"
 if options[:slot]
   if camera.respond_to? :set_playtargetslot
     camera.set_playtargetslot({ "targetslot" => options[:slot] })
+    puts "Use SD card slot: #{options[:slot]}"
   else
     puts "Can't call camera.set_playtargetslot API, skip"
   end
@@ -71,7 +80,7 @@ def num_format(n)
   n.to_s.reverse.scan(/(..?.?)/).join(",").reverse
 end
 
-puts "Target camera #{images.length} images found"
+puts "#{images.length} images found"
 
 if options[:delete]
   if !camera.respond_to? :exec_erase

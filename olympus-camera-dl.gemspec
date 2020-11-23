@@ -1,6 +1,8 @@
+require_relative "lib/olympus-camera-dl"
+
 Gem::Specification.new do |spec|
   spec.name = "olympus-camera-dl"
-  spec.version = "0.1.0"
+  spec.version = OlympusCameraDl::VERSION
   spec.authors = ["Yuichi Tateno"]
   spec.email = ["hotchpotch@gmail.com"]
 
@@ -26,5 +28,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "olympus-camera", "~> 0"
+  spec.add_dependency "http-dump", "~> 0"
   spec.add_development_dependency "rake", "~> 12.0"
 end

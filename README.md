@@ -20,6 +20,8 @@ Usage: olympus-camela-dl [options] ./photo-download-dir/
     -e, --ext [EXTNAME]              set download ext name, example: -e "jpg" or -e "oft"
     -s, --skip                       skip download image when image exists
     -p, --power-off                  camera power off when finished
+    -V, --verbose                    verbose debug messages
+
 ```
 
 ```
@@ -30,7 +32,8 @@ ERROR: Can't connect to camera
 
 $ olympus-camera-dl -c 2 --delete --power-off /home/pi/photos/E-M1MarkII/
 Connected: E-M1MarkII
-Target camera 11 images found
+Use SD card slot: 2
+11 images found
 [1/11] DOWNLOAD: /DCIM/101OLYMP/PB202134.JPG
 [1/11] WRITE: /home/pi/photos/E-M1MarkII/PB202134.JPG (4,517,267 byte)
 [1/11] DELETED: /DCIM/101OLYMP/PB202134.JPG on camera
